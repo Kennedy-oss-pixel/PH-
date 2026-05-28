@@ -35,8 +35,12 @@
 # foundation of your entire simulator is in place.
 # ───────────────────────────────────────────────────────
 def classify_ph(ph):
-    # YOUR CODE HERE ↓
-    pass
+    if ph < 6.0:
+        return "acidic"
+    elif ph <= 7.5:
+        return "neutral"
+    else:
+        return "alkaline"
 
 
 # ───────────────────────────────────────────────────────
@@ -63,8 +67,12 @@ def classify_ph(ph):
 # it actually gives useful scientific advice.
 # ───────────────────────────────────────────────────────
 def predict_growth(ph):
-    # YOUR CODE HERE ↓
-    pass
+    if 6.0 <= ph <= 7.5:
+        return "The seed will germinate well! 🌱 pH is in the optimal range."
+    elif (4.0 <= ph < 6.0) or (7.5 < ph <= 9.0):
+        return "The seed may struggle. 🟡 Water is too acidic."
+    else:
+        return "The seed will likely fail. 🔴 This pH is too extreme."
 
 
 # ───────────────────────────────────────────────────────
@@ -101,6 +109,17 @@ prediction = predict_growth(ph)
 print(f"pH entered  : {ph}")
 print(f"Water type  : {water_type}")
 print(f"Prediction  : {prediction}")
+
+while True:
+    try:
+        ph_input = input("Enter pH: ")
+        ph = float(ph_input)
+        break  # Exit the loop if conversion is successful
+    except ValueError:
+        print("That's not a number! Please try again.")
+
+water_type: str = classify_ph(ph)
+prediction = predict_growth(ph)
 
 
 # ════════════════════════════════════════════════════
